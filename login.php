@@ -1,9 +1,9 @@
 <?php
 
 $host="localhost";
-$user="root";
-$password="";
-$db="demo";
+$user="amphibis_ethel";
+$password="6fK}CYDJ*(zt";
+$db="amphibis_ethel";
 
 mysql_connect($host, $user, $password);
 mysql_select_db($db);
