@@ -56,7 +56,7 @@
             </ul>
           </nav><!-- .nav-menu -->
 
-          <a href="login.php" class="get-started-btn scrollto">Login</a>
+          <a href="index.php" class="get-started-btn scrollto">Login</a>
         </div>
       </div>
 
