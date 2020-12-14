@@ -1,8 +1,28 @@
+<?php 
+session_start();
+
+//creating database connection
+$dbhost = "localhost";
+$dbuser = "amphibis_ethel";
+$dbpass = "6fK}CYDJ*(zt";
+$dbname = "amphibis_ethel";
+$connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+
+//testing if connection occurs
+if(mysqli_connect_errno()){
+    die("Database connection failed:" .
+    mysqli_connect_errno() .
+    "(" . mysqli_connect_errno().")"
+  );
+ }
+ else{
+   echo("connected!");
+ }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,7 +42,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top"> 
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -65,8 +85,8 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Staff Datatables</a>
-                        <a class="nav-link" href="#">
+                        <a class="collapse-item" href="tables.php">Staff Datatables</a>
+                        <a class="nav-link" href="tables.php">
                             <i class="fas fa-fw fa-table"></i>
                             <span>Tables</span>
                         </a>
@@ -195,7 +215,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Total Staff</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">51 Staff Members</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">11 Staff Members</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -213,7 +233,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Total Students</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">52 Students</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">30 Students</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -222,6 +242,24 @@
                                 </div>
                             </div>
                         </div>
+                        <table>
+                        <?php 
+                        $sql = "SELECT * FROM student";
+                        $result = $connection->query($sql);
+                        
+                        if ($result->num_rows >0){
+                        
+                            while ($row = mysqli_fetch_assoc($result)){
+                                echo "<tr><td>".$row["student_id"]."</td>";
+                                echo "<td>".$row["name"]."</td>";
+                                echo "<td>".$row["contact_no"]."</td>";
+                                echo "<td>".$row["school"]."</td></tr>";
+                                echo "<td>".$row["year_enrolled"]."</td>";
+                                echo "<td>".$row["project_id"]."</td></tr>";
+                            }
+                        }
+                        ?>
+                        </table>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -288,5 +326,4 @@
     <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
-
 </html>
